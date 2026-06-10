@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections | Rebekah Howell Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F7F4EF; --warm-white: #FDFBF8;
+  --charcoal: #2A2825; --mid: #6B6660;
+  --light: #B0ABA4; --rule: #E0DBD4; --accent: #8A7F6E;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); font-size: 16px; line-height: 1.7; }
+
+nav {
+  position: sticky; top: 0; width: 100%; z-index: 100;
+  background: var(--cream); border-bottom: 1px solid var(--rule);
+  padding: 0 2rem; height: 56px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-brand:hover { color: var(--charcoal); }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
+
+.page-header { padding: 5rem 3rem 4rem; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; color: var(--charcoal); line-height: 1.05; margin-bottom: 1rem; }
+.page-sub { font-size: 0.95rem; color: var(--mid); max-width: 480px; line-height: 1.8; }
+
+.collection-index { display: flex; gap: 0; border-bottom: 1px solid var(--rule); overflow-x: auto; }
+.index-item { flex: 1; min-width: 130px; padding: 1.2rem 1.5rem; border-right: 1px solid var(--rule); text-decoration: none; transition: background 0.2s; display: block; }
+.index-item:last-child { border-right: none; }
+.index-item:hover { background: var(--warm-white); }
+.index-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--light); margin-bottom: 3px; }
+.index-name { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal); font-weight: 500; }
+.index-date { font-size: 0.7rem; color: var(--light); margin-top: 2px; }
+
+.collection { scroll-margin-top: 56px; }
+.collection-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh; }
+.col-image { position: relative; overflow: hidden; background: #C8C4BC; }
+.col-image img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(8%); transition: filter 0.6s; }
+.col-image:hover img { filter: grayscale(0%); }
+.col-image .ph { width: 100%; height: 100%; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #9A948C; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.col-image .ph svg { opacity: 0.35; }
+.col-content { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; }
+.col-meta { margin-bottom: 2rem; }
+.col-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--rule); line-height: 1; margin-bottom: 0.5rem; }
+.col-date-medium { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 0.8rem; }
+.col-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--charcoal); line-height: 1.1; margin-bottom: 1.5rem; }
+.col-quote { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--mid); line-height: 1.9; border-left: 1px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2rem; }
+.col-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s, color 0.2s; }
+.col-link:hover { color: var(--charcoal); gap: 14px; }
+
+.detail-strip { display: grid; gap: 3px; }
+.detail-strip.two { grid-template-columns: 1fr 1fr; }
+.detail-strip.three { grid-template-columns: 2fr 1fr 1fr; }
+.detail-item { overflow: hidden; background: #D4CFC8; aspect-ratio: 4/3; }
+.detail-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.4s; filter: grayscale(10%); }
+.detail-item:hover img { transform: scale(1.03); filter: grayscale(0%); }
+.detail-item .ph { width: 100%; height: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; color: #9A948C; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.col-divider { height: 1px; background: var(--rule); margin: 0; }
+.col-alt { background: var(--warm-white); }
+.col-alt .col-content { background: var(--warm-white); }
+
+.contact-strip { background: var(--charcoal); padding: 5rem 3rem; text-align: center; }
+.contact-strip h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+.contact-strip p { font-size: 0.95rem; color: rgba(247,244,239,0.6); margin-bottom: 2.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+.btn-light { background: transparent; color: var(--cream); border: 1px solid rgba(247,244,239,0.35); display: inline-block; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 13px 32px; transition: background 0.2s, border-color 0.2s; }
+.btn-light:hover { background: rgba(247,244,239,0.1); border-color: var(--cream); }
+
+footer { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--light); flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; } .nav-links { gap: 1rem; }
+  .page-header { padding: 3rem 1.5rem 2.5rem; }
+  .collection-hero { grid-template-columns: 1fr; }
+  .col-image { min-height: 60vw; }
+  .col-content { padding: 3rem 1.5rem; }
+  .detail-strip.three { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Rebekah Howell Art</a>
+  <div class="nav-links">
+    <a href="index.html">About</a>
+    <a href="the_artist.html">The Artist</a>
+    <a href="collection.html" class="active">Collections</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Portfolio</div>
+  <h1 class="page-title">Collections</h1>
+  <p class="page-sub">Each series is a chapter, a body of work tied together by a single idea, feeling or story. Explore them below.</p>
+</div>
+
+<div class="collection-index">
+  <a href="#beautiful-women" class="index-item"><div class="index-num">01</div><div class="index-name">Beautiful Women</div><div class="index-date">May 2026</div></a>
+  <a href="#sketches" class="index-item"><div class="index-num">02</div><div class="index-name">Sketches</div><div class="index-date">March 2026</div></a>
+  <a href="#truth" class="index-item"><div class="index-num">03</div><div class="index-name">The Truth</div><div class="index-date">Nov 2024</div></a>
+  <a href="#incomplete" class="index-item"><div class="index-num">04</div><div class="index-name">Incomplete Truth</div><div class="index-date">May 2024</div></a>
+  <a href="#journey" class="index-item"><div class="index-num">05</div><div class="index-name">Immersive Journey</div><div class="index-date">July 2023</div></a>
+  <a href="#ouma" class="index-item"><div class="index-num">06</div><div class="index-name">Ouma</div><div class="index-date">Aug 2022</div></a>
+  <a href="#fractured" class="index-item"><div class="index-num">07</div><div class="index-name">Fractured Identity</div><div class="index-date">July 2021</div></a>
+</div>
+
+<!-- 01 BEAUTIFUL WOMEN -->
+<div class="collection" id="beautiful-women">
+  <div class="collection-hero">
+    <div class="col-image">
+      <div class="ph"><img src="images/Untitled design (3) copy.jpeg" alt="image 3"></div>
+    </div>
+    <div class="col-content">
+      <div class="col-meta">
+        <div class="col-num">01</div>
+        <div class="col-date-medium">May 2026 · Colour Pencil</div>
+        <h2 class="col-title">Beautiful Women</h2>
+      </div>
+      <p class="col-quote">Beautiful Women is a celebration of femininity in all its forms. Drawn in colour pencil, this series was born out of a deep appreciation for the women around me and the way fashion, posture and quiet confidence tell a person's story before they say a word. Each piece captures a different woman, a different style, a different energy. They are not idealised. They are real and vivid and full of the kind of beauty that does not demand attention but rewards it. This collection is a love letter to the diversity of womanhood and a reminder that beauty is not one thing. It never has been.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip three">
+    <div class="detail-item"><div class="ph"><img src="images/Untitled design (1) copy.jpeg" alt="orange"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/Untitled design (8) copy.jpeg" alt="red"></div></div>
+     <div class="detail-item"><div class="ph"><img src="images/Untitled design (9) copy.jpeg" alt="pink"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 02 SKETCHES -->
+<div class="collection col-alt" id="sketches">
+  <div class="collection-hero" style="direction:rtl;">
+    <div class="col-image" style="direction:ltr;">
+      <div class="ph"><img src="images/owl.jpg" alt="owl"></div>
+    </div>
+    <div class="col-content" style="direction:ltr;">
+      <div class="col-meta">
+        <div class="col-num">02</div>
+        <div class="col-date-medium">March 2026 · Pencil</div>
+        <h2 class="col-title">Sketches</h2>
+      </div>
+      <p class="col-quote">Sketches marks a return to art, to observation, and to the simple discipline of putting pencil to paper and paying attention. After a period away, I came back to the page asking whether I could translate the words in my head into pictures. These sketches are rooted in my immediate surroundings, the everyday moments I had been moving past without truly seeing. They are small acts of presence, records of what I chose to look at more carefully. Together they mark the beginning of a new chapter in my practice, one that starts with simply showing up.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip two">
+    <div class="detail-item"><div class="ph"><img src="images/birdie.jpg" alt="birdie"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/littlebird.jpg" alt="littlebird"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/bird2.jpg" alt="bird2"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/ducks.jpg" alt="ducks"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 03 THE TRUTH -->
+<div class="collection" id="truth">
+  <div class="collection-hero">
+    <div class="col-image">
+      <div class="ph"><img src="images/IMG_9490.jpeg" alt="The Truth"></div>
+    </div>
+    <div class="col-content">
+      <div class="col-meta">
+        <div class="col-num">03</div>
+        <div class="col-date-medium">Nov 2024 · Charcoal Drawing</div>
+        <h2 class="col-title">The Truth</h2>
+      </div>
+      <p class="col-quote">The Truth began as an attempt to understand myself, to gather every version of who I am and bring them together into a single work. The result is not neat or comfortable, because truth rarely is. Charcoal felt like the only appropriate medium. It allows for building and erasing, for marks that feel certain and marks that feel like questions, all on the same page. This is not my truth or your truth in isolation. It is what emerges when all those versions are placed alongside one another and allowed to exist together without resolution.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip two">
+    <div class="detail-item"><div class="ph"><img src="images/IMG_9499.jpeg" alt="The Truth 2"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_9477.jpeg" alt="The Truth 3"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 04 INCOMPLETE TRUTH -->
+<div class="collection col-alt" id="incomplete">
+  <div class="collection-hero" style="direction:rtl;">
+    <div class="col-image" style="direction:ltr;">
+      <div class="ph"><img src="images/IMG_9181.jpeg" alt="Incomplete Truth"></div>
+    </div>
+    <div class="col-content" style="direction:ltr;">
+      <div class="col-meta">
+        <div class="col-num">04</div>
+        <div class="col-date-medium">May 2024 · Charcoal Drawing</div>
+        <h2 class="col-title">The Incomplete Truth</h2>
+      </div>
+      <p class="col-quote">If The Truth is about what I know, The Incomplete Truth is about everything I don't. The blank spaces in these drawings are not mistakes. They are the most deliberate marks in the work, representing the gaps in knowledge and perception that we all carry. There is a strong instinct to finish, to fill in, to resolve. Resisting that instinct was the work. I hope those who encounter these pieces find something of their own unfinished story within the gaps, and feel perhaps a little less alone in the not knowing.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip two">
+    <div class="detail-item"><div class="ph"><img src="images/IMG_9167.jpeg" alt="ICT2"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 05 IMMERSIVE JOURNEY -->
+<div class="collection" id="journey">
+  <div class="collection-hero">
+    <div class="col-image">
+      <div class="ph"><img src="images/IMG_5353.jpeg" alt="Han"></div>
+    </div>
+    <div class="col-content">
+      <div class="col-meta">
+        <div class="col-num">05</div>
+        <div class="col-date-medium">July 2023 · Charcoal Drawing</div>
+        <h2 class="col-title">Immersive Journey</h2>
+      </div>
+      <p class="col-quote">Immersive Journey grew out of a fascination with denim, one of the most ordinary and yet most storied fabrics in the world. This series traces its journey through charcoal, a medium that shares something essential with its subject. Both are gritty, layered, and capable of depth that rewards close attention. A pair of jeans worn long enough becomes a record of a life. This series asks the viewer to look closely at something they pass over every day and consider the full weight of its journey, the beauty and the cost of it.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip two">
+    <div class="detail-item"><div class="ph"><img src="images/IMG_2299.JPG" alt="DFlower"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_2321.JPG" alt="DBubble"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_2303.JPG" alt="DPhone"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_2304.JPG" alt="DDaisy"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 06 OUMA -->
+<div class="collection col-alt" id="ouma">
+  <div class="collection-hero" style="direction:rtl;">
+    <div class="col-image" style="direction:ltr;">
+      <div class="ph"><img src="images/IMG_7169.jpg" alt="OUMA"></div>
+    </div>
+    <div class="col-content" style="direction:ltr;">
+      <div class="col-meta">
+        <div class="col-num">06</div>
+        <div class="col-date-medium">Aug 2022 · Charcoal Drawing</div>
+        <h2 class="col-title">Ouma</h2>
+      </div>
+      <p class="col-quote">Ouma is the Afrikaans word for grandmother, and this series is my tribute to mine. She is my role model, my hero and one of the most quietly extraordinary people I have ever known. When I finally began drawing her, I found that the work became a form of gratitude, a way of saying with charcoal and care that I see you and I am so glad you are here. These portraits attempt to capture not just her face but her warmth, her wisdom and the particular stillness and strength that has always made me feel safe.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip three">
+    <div class="detail-item"><div class="ph"><img src="images/IMG_7167.jpeg" alt="OUMA2"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_7170.jpeg" alt="OUMA3"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_7171.jpeg" alt="OUMA4"></div></div>
+  </div>
+</div>
+
+<div class="col-divider"></div>
+
+<!-- 07 FRACTURED IDENTITY -->
+<div class="collection" id="fractured">
+  <div class="collection-hero">
+    <div class="col-image">
+      <div class="ph"><img src="images/IMG_5176.jpg" alt="Fractured Identity"></div>
+    </div>
+    <div class="col-content">
+      <div class="col-meta">
+        <div class="col-num">07</div>
+        <div class="col-date-medium">July 2021 · Various Mediums</div>
+        <h2 class="col-title">Fractured Identity</h2>
+      </div>
+      <p class="col-quote">Fractured Identity began with a mirror and a question: who am I, really? Using a range of mediums and techniques, I made a series of self portraits, each approached differently, each capturing something true about a particular version of myself. The self depicted here is not fixed. It is fluid, layered and always in the process of becoming. This series taught me that identity is not something you arrive at. It is something you keep making, keep questioning and keep returning to with fresh eyes.</p>
+      <a href="gallery.html" class="col-link">View in gallery →</a>
+    </div>
+  </div>
+  <div class="detail-strip three">
+    <div class="detail-item"><div class="ph"><img src="images/IMG_5179.jpeg" alt="Fractured Identity2"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_5191.jpeg" alt="Fractured Identity3"></div></div>
+    <div class="detail-item"><div class="ph"><img src="images/IMG_5298.jpeg" alt="Fractured Identity4"></div></div>
+  </div>
+</div>
+
+<div class="contact-strip">
+  <h2>Moved by a piece?</h2>
+  <p>I'd love to hear which collection resonated with you or discuss a commission.</p>
+  <a href="contact.html" class="btn-light">Get in touch</a>
+</div>
+
+<footer>
+  <span>© 2025 Rebekah Howell Art. All rights reserved.</span>
+  <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" style="color:var(--light);text-decoration:none;letter-spacing:0.06em;">Instagram</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Rebekah Howell Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F7F4EF; --warm-white: #FDFBF8;
+  --charcoal: #2A2825; --mid: #6B6660;
+  --light: #B0ABA4; --rule: #E0DBD4; --accent: #8A7F6E;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); font-size: 16px; line-height: 1.7; }
+
+nav {
+  position: sticky; top: 0; width: 100%; z-index: 100;
+  background: var(--cream); border-bottom: 1px solid var(--rule);
+  padding: 0 2rem; height: 56px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-brand:hover { color: var(--charcoal); }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--charcoal);
+  padding: 6rem 3rem 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+}
+.page-header .eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+.page-header .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; color: var(--cream); line-height: 1.05; }
+.page-header h1 em { font-style: italic; color: rgba(247,244,239,0.5); }
+.header-right p { font-size: 1rem; color: rgba(247,244,239,0.6); line-height: 1.8; max-width: 380px; }
+
+/* MAIN CONTENT */
+.main { display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh; }
+
+/* FORM SIDE */
+.form-side { padding: 5rem 4rem; background: var(--warm-white); }
+.form-label-top { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
+.form-label-top::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+.form { display: flex; flex-direction: column; gap: 1.5rem; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+.field input, .field textarea, .field select {
+  background: var(--cream); border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 0; font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem; color: var(--charcoal);
+  outline: none; transition: border-color 0.2s;
+  border-radius: 0; appearance: none; width: 100%;
+}
+.field input:focus, .field textarea:focus, .field select:focus { border-bottom-color: var(--charcoal); }
+.field textarea { resize: none; min-height: 120px; }
+.field select { cursor: pointer; }
+
+.submit-btn {
+  margin-top: 0.5rem; align-self: flex-start;
+  background: var(--charcoal); color: var(--cream);
+  border: 1px solid var(--charcoal);
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+  padding: 14px 36px; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.submit-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+/* INFO SIDE */
+.info-side { padding: 5rem 4rem; background: var(--cream); border-left: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: space-between; }
+
+.info-block { margin-bottom: 3rem; }
+.info-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+.info-label::before { content: ''; width: 16px; height: 1px; background: var(--accent); }
+.info-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.5rem; }
+.info-text { font-size: 0.88rem; color: var(--mid); line-height: 1.8; }
+
+.social-links { display: flex; flex-direction: column; gap: 12px; }
+.social-link {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; color: var(--mid);
+  font-size: 0.88rem; padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.2s;
+}
+.social-link:first-child { border-top: 1px solid var(--rule); }
+.social-link:hover { color: var(--charcoal); }
+.social-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: border-color 0.2s, background 0.2s;
+}
+.social-link:hover .social-icon { border-color: var(--charcoal); background: var(--charcoal); color: var(--cream); }
+.social-icon svg { width: 15px; height: 15px; }
+
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 2rem; }
+.insta-thumb { aspect-ratio: 1; background: #D4CFC8; overflow: hidden; }
+.insta-thumb .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #9A948C; letter-spacing: 0.08em; text-transform: uppercase; }
+.insta-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; filter: grayscale(20%); }
+.insta-thumb:hover img { transform: scale(1.06); filter: grayscale(0%); }
+
+footer { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--light); flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; } .nav-links { gap: 1rem; }
+  .page-header { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; gap: 1.5rem; }
+  .main { grid-template-columns: 1fr; }
+  .form-side { padding: 3rem 1.5rem; }
+  .info-side { padding: 3rem 1.5rem; border-left: none; border-top: 1px solid var(--rule); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Rebekah Howell Art</a>
+  <div class="nav-links">
+    <a href="index.html">About</a>
+    <a href="the artist.html">The Artist</a>
+    <a href="collection.html">Collections</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <div class="eyebrow">Contact</div>
+    <h1>Let's<br><em>talk.</em></h1>
+  </div>
+  <div class="header-right">
+    <p>Whether you're moved by a piece, curious about a commission or simply want to share your experience with the work. I'd love to hear from you.</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FORM -->
+  <div class="form-side">
+    <div class="form-label-top">Send a message</div>
+    <form class="form" action="https://formspree.io/f/mqeobwgk" method="POST">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" placeholder="Name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="Email" required>
+      </div>
+      <div class="field">
+        <label for="reason">What's this about?</label>
+        <select id="reason">
+          <option value="" disabled selected>Select a reason</option>
+          <option>I'm interested in purchasing a piece</option>
+          <option>I'd like to commission something</option>
+          <option>I want to share my experience with the work</option>
+          <option>General enquiry</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" placeholder="Tell me anything..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submit-btn">Send message</button>
+    </form>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-side">
+    <div>
+      <div class="info-block">
+        <div class="info-label">Follow along</div>
+        <div class="info-heading">@rebekah_howell_art</div>
+        <p class="info-text">The latest work, process snippets, and studio moments — all on Instagram.</p>
+        <div class="insta-grid" style="margin-top:1.2rem;">
+          <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="insta-thumb"><div class="ph"><img src="images/IMG_6884.jpg" alt="Photo 1"></div></a>
+          <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="insta-thumb"><div class="ph"><img src="images/IMG_6883.jpg" alt="Photo 2"></div></a>
+          <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="insta-thumb"><div class="ph"><img src="images/IMG_6882.jpg" alt="Photo 3"></div></a>
+          <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="insta-thumb"><div class="ph"><img src="images/IMG_6881.jpg" alt="Photo 4"></div></a>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">Connect</div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="social-link">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </div>
+            Instagram — @rebekah_howell_art
+          </a>
+          <a href="mailto:rebekah@example.com" class="social-link">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </div>
+            Email — rebekahhowell24@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.78rem;color:var(--light);line-height:1.7;">Based in South Africa · Available for commissions &amp; collaborations</p>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2025 Rebekah Howell Art. All rights reserved.</span>
+  <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" style="color:var(--light);text-decoration:none;letter-spacing:0.06em;">Instagram</a>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Message sent!';
+  btn.style.background = 'var(--accent)';
+  btn.style.borderColor = 'var(--accent)';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send message';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 3000);
+}
+</script>
+
+</body>
+</html>

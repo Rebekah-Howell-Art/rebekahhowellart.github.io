@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Rebekah Howell Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F7F4EF; --warm-white: #FDFBF8;
+  --charcoal: #2A2825; --mid: #6B6660;
+  --light: #B0ABA4; --rule: #E0DBD4; --accent: #8A7F6E;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); font-size: 16px; line-height: 1.7; }
+
+nav {
+  position: sticky; top: 0; width: 100%; z-index: 100;
+  background: var(--cream); border-bottom: 1px solid var(--rule);
+  padding: 0 2rem; height: 56px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-brand:hover { color: var(--charcoal); }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 5rem 3rem 3rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.page-header-left .eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; }
+.page-header-left .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--charcoal); line-height: 1.1; }
+
+/* FILTER TABS */
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn {
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 7px 18px; border: 1px solid var(--rule);
+  background: transparent; color: var(--mid); cursor: pointer;
+  transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+
+/* COLLECTION SECTIONS */
+.collection { padding: 5rem 3rem; border-bottom: 1px solid var(--rule); }
+.collection:last-of-type { border-bottom: none; }
+.collection-inner { max-width: 1100px; margin: 0 auto; }
+
+.collection-header { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; margin-bottom: 3rem; align-items: start; }
+.collection-meta { padding-top: 0.3rem; }
+.collection-date { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); margin-bottom: 0.6rem; }
+.collection-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--charcoal); line-height: 1.15; margin-bottom: 0.5rem; }
+.collection-medium { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.collection-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--mid); line-height: 1.8; border-left: 1px solid var(--accent); padding-left: 1.5rem; }
+
+/* ARTWORK GRIDS */
+.art-grid-featured { display: grid; grid-template-columns: 3fr 2fr; gap: 3px; margin-bottom: 3px; }
+.art-grid-secondary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.art-grid-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.art-grid-trio { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3px; }
+
+.art-item {
+  position: relative; overflow: hidden; background: #D4CFC8;
+  cursor: pointer;
+}
+.art-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
+  filter: grayscale(10%);
+}
+.art-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.art-item.tall { aspect-ratio: 3/4; }
+.art-item.square { aspect-ratio: 1; }
+.art-item.wide { aspect-ratio: 4/3; }
+.art-item.short { aspect-ratio: 5/3; }
+
+/* placeholder */
+.ph {
+  width: 100%; height: 100%; min-height: 220px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; color: #9A948C; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ph svg { opacity: 0.35; }
+
+/* CONTACT STRIP */
+.contact-strip { background: var(--charcoal); padding: 5rem 3rem; text-align: center; }
+.contact-strip h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+.contact-strip p { font-size: 0.95rem; color: rgba(247,244,239,0.6); margin-bottom: 2.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+.btn-light { background: transparent; color: var(--cream); border: 1px solid rgba(247,244,239,0.35); display: inline-block; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 13px 32px; transition: background 0.2s, border-color 0.2s; }
+.btn-light:hover { background: rgba(247,244,239,0.1); border-color: var(--cream); }
+
+footer { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--light); flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; } .nav-links { gap: 1rem; }
+  .page-header { padding: 3rem 1.5rem 2rem; flex-direction: column; align-items: flex-start; }
+  .collection { padding: 3rem 1.5rem; }
+  .collection-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .art-grid-featured, .art-grid-trio { grid-template-columns: 1fr; }
+  .art-grid-secondary { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Rebekah Howell Art</a>
+  <div class="nav-links">
+    <a href="index.html">About</a>
+    <a href="the artist.html" class="active">The Artist</a>
+    <a href="collection.html">Collections</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="eyebrow">Portfolio</div>
+    <h1 class="page-title">Gallery</h1>
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-btn active">All works</button>
+    <button class="filter-btn">Charcoal</button>
+    <button class="filter-btn">Mixed media</button>
+    <button class="filter-btn">Denim</button>
+  </div>
+</div>
+
+<!-- Beautiful Women -->
+<section class="collection" data-series="mixed">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">May 2026</div>
+        <h2 class="collection-title">Beautiful Women</h2>
+        <div class="collection-medium">Colour Pencils</div>
+      </div>
+      <p class="collection-quote">A colour pencil series celebrating women in all their styles and strength. Each portrait looks closely at a different woman and finds in her something entirely worth honouring, the quiet power of simply being yourself.</p>
+    </div>
+    <div class="art-grid-featured">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/Untitled design (3) copy.jpeg" alt="image 3"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <div class="art-item square">
+          <div class="ph"><img src="images/Untitled design (1) copy.jpeg" alt="orange"></div>
+        </div>
+        <div class="art-item square">
+          <div class="ph"><img src="images/Untitled design (8) copy.jpeg" alt="red"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skecthes -->
+<section class="collection" data-series="mixed">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">March 2026</div>
+        <h2 class="collection-title">Sketches</h2>
+        <div class="collection-medium">Pencil Drawings</div>
+      </div>
+      <p class="collection-quote">Pencil drawings born out of a return to art after time away. A personal experiment in translating words into pictures and learning to find beauty in everyday surroundings that had always been there, waiting to be noticed.</p>
+    </div>
+    <div class="art-grid-featured">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/birdie.jpg" alt="birdie"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <div class="art-item square">
+          <div class="ph"><img src="images/littlebird.jpg" alt="littlebird"></div>
+        </div>
+        <div class="art-item square">
+          <div class="ph"><img src="images/ducks.jpg" alt="ducks"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE TRUTH -->
+<section class="collection" data-series="charcoal">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">Nov 2024</div>
+        <h2 class="collection-title">The Truth</h2>
+        <div class="collection-medium">Charcoal Drawing</div>
+      </div>
+      <p class="collection-quote">A charcoal series built around a deeply personal question: who am I, really? Every mark carries the weight of something real. This collection places every version of the truth on the same page without asking them to agree.</p>
+    </div>
+    <div class="art-grid-featured">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_9490.jpeg" alt="The Truth"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <div class="art-item square">
+          <div class="ph"><img src="images/IMG_9499.jpeg" alt="The Truth 2"></div>
+        </div>
+        <div class="art-item square">
+          <div class="ph"><img src="images/IMG_9477.jpeg" alt="The Truth 3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCOMPLETE TRUTH -->
+<section class="collection" data-series="charcoal" style="background:var(--warm-white);">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">May 2024</div>
+        <h2 class="collection-title">The Incomplete Truth</h2>
+        <div class="collection-medium">Charcoal Drawing</div>
+      </div>
+      <p class="collection-quote">A charcoal series about what cannot yet be seen or named. The blank spaces are intentional, representing the gaps in self understanding we all carry and the quiet courage it takes to leave them open.</p>
+    </div>
+    <div class="art-grid-pair">
+      <div class="art-item wide">
+        <div class="ph"><img src="images/IMG_9181.jpeg" alt="Incomplete Truth"></div>
+      </div>
+      <div class="art-item wide">
+        <div class="ph"><img src="images/IMG_9358.jpeg" alt="Seasons"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMERSIVE JOURNEY -->
+<section class="collection" data-series="charcoal denim">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">July 2023</div>
+        <h2 class="collection-title">Immersive Journey</h2>
+        <div class="collection-medium">Charcoal Drawing</div>
+      </div>
+      <p class="collection-quote">From cotton to denim to fashion to recycling. The journey is both immersive and complex. A fabric of grit. A symbol of resilience and wear. Every crease, rip, and thread tells a story. A charcoal drawing tracing the journey of denim from cotton field to fashion to landfill. One of the world's most familiar fabrics, looked at closely enough to reveal the human story threaded all the way through it.</p>
+    </div>
+    <div class="art-grid-trio">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_5353.jpeg" alt="Han"></div>
+      </div>
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_2304.JPG" alt="DDaisy"></div>
+      </div>
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_2321.JPG" alt="DBubble"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUMA -->
+<section class="collection" data-series="charcoal" style="background:var(--warm-white);">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">Aug 2022</div>
+        <h2 class="collection-title">Ouma</h2>
+        <div class="collection-medium">Charcoal Drawing</div>
+      </div>
+      <p class="collection-quote">Charcoal portrait of my grandmother, drawn with love and made as a permanent act of gratitude. Less about capturing a face and more about capturing a feeling, of warmth, of safety and of a love too large to put into words.</p>
+    </div>
+    <div class="art-grid-trio">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_7169.jpg" alt="OUMA"></div>
+      </div>
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_7171.jpeg" alt="OUMA4"></div>
+      </div>
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_7170.jpeg" alt="OUMA3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRACTURED IDENTITY -->
+<section class="collection" data-series="mixed">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div class="collection-meta">
+        <div class="collection-date">July 2021</div>
+        <h2 class="collection-title">Fractured Identity</h2>
+        <div class="collection-medium">Various Mediums</div>
+      </div>
+      <p class="collection-quote">A multi medium self portrait series made during a period of genuine searching. Each piece captures a different version of the same person, uncertain, evolving and refusing to be reduced to a single story.</p>
+    </div>
+    <div class="art-grid-featured">
+      <div class="art-item tall">
+        <div class="ph"><img src="images/IMG_5176.jpg" alt="Fractured Identity"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <div class="art-item square">
+          <div class="ph"><img src="images/IMG_5179.jpeg" alt="Fractured Identity2"></div>
+        </div>
+        <div class="art-item square">
+          <div class="ph"><img src="images/IMG_5191.jpeg" alt="Fractured Identity3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip">
+  <h2>Let's connect</h2>
+  <p>Moved by a piece? Want a quote? I'd love to hear from you.</p>
+  <a href="contact.html" class="btn-light">Get in touch</a>
+</div>
+
+<footer>
+  <span>© 2025 Rebekah Howell Art. All rights reserved.</span>
+  <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" style="color:var(--light);text-decoration:none;letter-spacing:0.06em;">Instagram</a>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.textContent.trim().toLowerCase();
+      document.querySelectorAll('.collection').forEach(col => {
+        if (filter === 'all works') { col.style.display = ''; return; }
+        const series = col.dataset.series || '';
+        col.style.display = series.includes(filter.split(' ')[0]) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rebekah Howell Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F7F4EF; --warm-white: #FDFBF8;
+  --charcoal: #2A2825; --mid: #6B6660;
+  --light: #B0ABA4; --rule: #E0DBD4; --accent: #8A7F6E;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); font-size: 16px; line-height: 1.7; }
+
+nav {
+  position: sticky; top: 0; width: 100%; z-index: 100;
+  background: var(--cream); border-bottom: 1px solid var(--rule);
+  padding: 0 2rem; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-brand:hover { color: var(--charcoal); }
+.nav-links { display: flex; gap: 1.6rem; }
+.nav-links a { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+.nav-links a:hover { color: var(--charcoal); }
+
+.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 64px); }
+.hero-image { position: relative; overflow: hidden; background: #C8C4BC; display: flex; align-items: center; justify-content: center; }
+.hero-image .ph { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-placeholder {
+  width: 100%; height: 100%; min-height: 420px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; color: #9A948C; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.img-placeholder svg { opacity: 0.4; }
+
+.hero-content { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; background: var(--warm-white); }
+.hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::after { content: ''; flex: 1; max-width: 48px; height: 1px; background: var(--accent); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4vw, 4rem); font-weight: 300; line-height: 1.15; color: var(--charcoal); margin-bottom: 1.8rem; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-body { font-size: 0.95rem; color: var(--mid); line-height: 1.8; max-width: 380px; margin-bottom: 2.8rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { display: inline-block; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 13px 28px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; }
+.btn-primary { background: var(--charcoal); color: var(--cream); border: 1px solid var(--charcoal); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-secondary { background: transparent; color: var(--charcoal); border: 1px solid var(--rule); }
+.btn-secondary:hover { border-color: var(--charcoal); }
+
+.intro-strip { background: var(--charcoal); color: var(--cream); padding: 2rem 3rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; text-align: center; }
+.intro-strip-item { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: rgba(247,244,239,0.7); }
+.intro-strip-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+.section { padding: 6rem 3rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+.section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.about-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; color: var(--charcoal); margin-bottom: 1.5rem; }
+.about-text { font-size: 0.95rem; color: var(--mid); line-height: 1.9; margin-bottom: 1.5rem; }
+
+.work-section { background: var(--warm-white); }
+.work-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.work-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--charcoal); }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+.work-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #D4CFC8; display: flex; align-items: center; justify-content: center; }
+.work-item .thumb-ph { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #9A948C; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.work-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.4s; filter: grayscale(15%); }
+.work-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
+.work-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,40,37,0.75) 0%, transparent 50%); opacity: 0; transition: opacity 0.35s; display: flex; align-items: flex-end; padding: 1.5rem; }
+.work-item:hover .work-overlay { opacity: 1; }
+.work-label { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--cream); font-weight: 300; }
+
+.insta-section { padding: 5rem 3rem; }
+.insta-header { text-align: center; margin-bottom: 3rem; }
+.insta-handle { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--charcoal); margin-bottom: 0.4rem; text-decoration: none; display: inline-block; transition: color 0.2s; }
+.insta-handle:hover { color: var(--accent); }
+.insta-sub { font-size: 0.8rem; color: var(--light); letter-spacing: 0.1em; text-transform: uppercase; }
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 900px; margin: 0 auto; }
+.insta-item { aspect-ratio: 1; overflow: hidden; background: #D4CFC8; display: flex; align-items: center; justify-content: center; }
+.insta-item .sq-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #9A948C; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.insta-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s, filter 0.3s; filter: grayscale(20%); }
+.insta-item:hover img { transform: scale(1.06); filter: grayscale(0%); }
+
+.contact-strip { background: var(--charcoal); padding: 5rem 3rem; text-align: center; }
+.contact-strip h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+.contact-strip p { font-size: 0.95rem; color: rgba(247,244,239,0.6); margin-bottom: 2.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+.btn-light { background: transparent; color: var(--cream); border: 1px solid rgba(247,244,239,0.35); display: inline-block; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 13px 32px; transition: background 0.2s, border-color 0.2s; }
+.btn-light:hover { background: rgba(247,244,239,0.1); border-color: var(--cream); }
+
+footer { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); font-size: 0.78rem; color: var(--light); flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-image { height: 55vw; }
+  .hero-content { padding: 3rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .work-grid { grid-template-columns: 1fr 1fr; }
+  .work-item.large { grid-column: span 1; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+  nav { padding: 0 1.2rem; }
+  .nav-links { gap: 1rem; }
+  .section { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Rebekah Howell Art</a>
+  <div class="nav-links">
+    <a href="index.html">About</a>
+    <a href="the artist.html">The Artist</a>
+    <a href="collection.html">Collections</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+ <div class="hero-image">
+  <img src="images/IMG_8070.jpg" alt="Rebekah Howell Artwork" class="ph">
+</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Charcoal &amp; Mixed Media</div>
+    <h1>Art that is<br><em>felt,</em><br>not just seen.</h1>
+    <p class="hero-body">Rebekah Howell brings depth and emotion to life through charcoal drawings. Inspired by faith, personal reflection and the quiet stories we carry.</p>
+    <div class="hero-actions">
+      <a href="gallery.html" class="btn btn-primary">View gallery</a>
+      <a href="the artist.html" class="btn btn-secondary">Meet the artist</a>
+    </div>
+  </div>
+</section>
+
+<div class="intro-strip">
+  <span class="intro-strip-item">Charcoal drawings</span>
+  <span class="intro-strip-sep"></span>
+  <span class="intro-strip-item">Mixed media</span>
+  <span class="intro-strip-sep"></span>
+  <span class="intro-strip-item">Faith &amp; identity</span>
+  <span class="intro-strip-sep"></span>
+  <span class="intro-strip-item">Storytelling through art</span>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">About</div>
+        <div style="border-top:1px solid var(--rule);padding-top:1.5rem;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--accent);line-height:1.7;">"Each artwork tells a unique story."</p>
+        </div>
+      </div>
+      <div>
+        <h2 class="about-heading">Meet the artist</h2>
+        <p class="about-text">Rebekah Howell is an artist who brings depth and emotion to life through charcoal drawings. Inspired by her faith and personal reflections, her work explores storytelling and themes of love, identity and connection.</p>
+        <p class="about-text">Her mission is to make art that feels personal, purposeful and holds a genuine connection with the viewer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section work-section">
+  <div class="section-inner">
+    <div class="work-header">
+      <div>
+        <div class="section-label">Selected works</div>
+        <h2 class="work-heading">From the studio</h2>
+      </div>
+      <a href="#" class="btn btn-secondary">View all works</a>
+    </div>
+    <div class="work-grid">
+      <div class="work-item">
+        <img src="images/IMG_9490.jpeg" alt="The Truth">
+        <div class="work-overlay">
+        <span class="work-label">The Truth</span>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="images/IMG_5176.jpg" alt="Fractured Identity">
+        <div class="work-overlay">
+        <span class="work-label">Fractured Identity</span>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="images/IMG_7169.jpg" alt="Ouma">
+        <div class="work-overlay">
+        <span class="work-label">OUMA</span>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="images/IMG_2304.JPG" alt="Denim #1">
+        <div class="work-overlay">
+        <span class="work-label">Denim #1</span>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="images/IMG_9181.jpeg" alt="Incomplete Truth">
+        <div class="work-overlay">
+        <span class="work-label">Incomplete Truth</span>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="images/IMG_9358.jpeg" alt="Seasons">
+        <div class="work-overlay">
+        <span class="work-label">Seasons</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="insta-section">
+  <div class="section-inner">
+    <div class="insta-header">
+      <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" class="insta-handle">@rebekah_howell_art</a>
+      <p class="insta-sub">Follow along on Instagram</p>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-item"><div class="sq-ph"><img src="images/IMG_6884.jpg" alt="Photo 1">Photo 1</div></div>
+      <div class="insta-item"><div class="sq-ph"><img src="images/IMG_6883.jpg" alt="Photo 2">Photo 2</div></div>
+      <div class="insta-item"><div class="sq-ph"><img src="images/IMG_6882.jpg" alt="Photo 3">Photo 3</div></div>
+      <div class="insta-item"><div class="sq-ph"><img src="images/IMG_6881.jpg" alt="Photo 4">Photo 4</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip">
+  <h2>Let's connect</h2>
+  <p>Interested in a piece, a commission or just want to say hello?</p>
+  <a href="#" class="btn-light">Get in touch</a>
+</div>
+
+<footer>
+  <span>© 2025 Rebekah Howell Art. All rights reserved.</span>
+  <a href="https://www.instagram.com/rebekah_howell_art/" target="_blank" style="color:var(--light);text-decoration:none;letter-spacing:0.06em;">Instagram</a>
+</footer>
+
+</body>
+</html>
